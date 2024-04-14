@@ -18,7 +18,7 @@ void add_animal_to_list(ex06_t *list, char *key, int value)
 int get_animal_from_list(ex06_t *list, char *key)
 {
     /* get value paired with given key */
-    return -1;
+    return 0;
 }
 
 void free_animals_list(ex06_t *list)
@@ -35,15 +35,15 @@ void exercise_6()
     char *dog_value = "woof!";
     double fish_value = 3.14;
 
-    add_animal_to_list(map, strdup("cat"), &cat_value);
-    add_animal_to_list(map, strdup("dog"), dog_value);
-    add_animal_to_list(map, strdup("fish"), &fish_value);
+    add_animal_to_list(map, "cat", &cat_value);
+    add_animal_to_list(map, "dog", dog_value);
+    add_animal_to_list(map, "fish", &fish_value);
 
     void *cat_data = get_animal_from_list(map, "cat");
     void *dog_data = get_animal_from_list(map, "dog");
     void *fish_data = get_animal_from_list(map, "fish");
 
-    printf("%d -- %s -- %d\n", /* display animals 'data' variable */); // expected: 42 -- woof! -- 3.14
+    printf("%d -- %s -- %.2f\n", /* display animals 'data' variable */); // expected: 42 -- woof! -- 3.14
 
     free_animals_list(map);
     /* not supposed to leak / no errors */

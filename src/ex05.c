@@ -7,7 +7,7 @@
 
 #include "../includes/header.h"
 
-void add_animal_to_list(ex05_t *list, char *key, int value)
+void add_animal_to_list(ex05_t **list, char *key, int value)
 {
     /* create node */
     /* add key to node */
@@ -18,7 +18,7 @@ void add_animal_to_list(ex05_t *list, char *key, int value)
 int get_animal_from_list(ex05_t *list, char *key)
 {
     /* get value paired with given key */
-    return -1;
+    return 0;
 }
 
 void free_animals_list(ex05_t *list)
@@ -31,9 +31,9 @@ void exercise_5()
 {
     ex05_t *map = NULL;
 
-    add_animal_to_list(map, "cat", 42);
-    add_animal_to_list(map, "dog", 21);
-    add_animal_to_list(map, "fish", 84);
+    add_animal_to_list(&map, "cat", 42);
+    add_animal_to_list(&map, "dog", 21);
+    add_animal_to_list(&map, "fish", 84);
 
     int cat_data = get_animal_from_list(map, "cat");
     int dog_data = get_animal_from_list(map, "dog");

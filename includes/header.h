@@ -9,6 +9,8 @@
     #define WORKSHOP_MODULAR_C_HEADER_H
     #include <stdio.h>
     #include <string.h>
+    #include <stdlib.h>
+    #include <stdarg.h>
 
 /* STRUCTS AND GENERIC TYPE */
 
@@ -28,8 +30,6 @@ typedef struct {
 
 typedef struct ex04_s {
     char *string;
-    void (*create_string)(struct ex04_s *module, char *string);
-    void (*delete)(struct ex04_s *module);
     void (*dump)(const struct ex04_s *module);
     const char *(*get)(const struct ex04_s *module);
     void (*edit)(struct ex04_s *module, char *string);
@@ -40,35 +40,45 @@ typedef struct ex04_s {
 typedef struct ex05_s {
     char *key;
     int value;
-    struct ex04_s *next;
+    struct ex05_s *next;
 } ex05_t;
 
 typedef struct ex06_s {
     char *key;
     void *value;
-    struct ex05_s *next;
+    struct ex06_s *next;
 } ex06_t;
 
-enum obj_type {
-    ANIMAL,
-    FRUIT,
-    BACKGROUND
-};
+typedef enum {
+    ENTITY,
+    BACKGROUND,
+    ITEM
+} obj_type;
 
 typedef struct ex07_s {
     void *data;
     obj_type type;
-    struct ex07_s *next;
+    void (*update_object)(struct ex07_s *object);
+    void (*draw_object)(struct ex07_s *object);
 } ex07_t;
 
-typedef struct ex08_s {
-    void *data;
-    obj_type type;
-    struct ex08_s *next;
-    // add
-} ex08_t;
+typedef struct {
+    char *name;
+    int value;
+} entity_object;
 
-/* PROTOTYPES */
+typedef struct {
+    char *filepath;
+    int width;
+    int height;
+} background_object;
+
+typedef struct {
+    char *name;
+    char *texture_filepath;
+} item_object;
+
+/* Exercises prototypes */
 
 void exercise_1();
 void exercise_2();
@@ -77,5 +87,17 @@ void exercise_4();
 void exercise_5();
 void exercise_6();
 void exercise_7();
+
+/* Exercise 7 prototypes */
+
+void init_object(ex07_t *object, obj_type type, int args_nb, ...);
+void delete_object(ex07_t *object);
+
+void update_entity(ex07_t *object);
+void update_background(ex07_t *object);
+void update_item(ex07_t *object);
+void draw_entity(ex07_t *object);
+void draw_background(ex07_t *object);
+void draw_item(ex07_t *object);
 
 #endif //WORKSHOP_MODULAR_C_HEADER_H
