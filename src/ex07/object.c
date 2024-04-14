@@ -44,5 +44,3 @@ void delete_object(ex07_t *object)
     }
     /* no valgrind errors / no leaks */
 }
-
-/* FUNCTIONS PER OBJECT TYPE */

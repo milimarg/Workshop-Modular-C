@@ -7,27 +7,27 @@
 
 #include "../includes/header.h"
 
-void destroy_string(ex04_t *module)
+static void destroy_string(ex04_t *module)
 {
     /* destroy the string */
 }
 
-void dump_string(ex04_t *module)
+static void dump_string(ex04_t *module)
 {
     /* display module content */
 }
 
-void edit_string(ex04_t *module, char *string)
+static void edit_string(ex04_t *module, char *string)
 {
     /* edit module content */
 }
 
-const char *get_string(const ex04_t *module)
+static const char *get_string(const ex04_t *module)
 {
     /* get module content */
 }
 
-void init_string(ex04_t *module, char *string)
+static void init_string(ex04_t *module, char *string)
 {
     /* create a string in the module */
 }

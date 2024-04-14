@@ -7,7 +7,7 @@
 
 #include "../includes/header.h"
 
-void add_animal_to_list(ex06_t *list, char *key, int value)
+static void add_animal_to_list(ex06_t *list, char *key, int value)
 {
     /* create node */
     /* add key to node */
@@ -15,13 +15,13 @@ void add_animal_to_list(ex06_t *list, char *key, int value)
     /* add node to list */
 }
 
-int get_animal_from_list(ex06_t *list, char *key)
+static int get_animal_from_list(ex06_t *list, char *key)
 {
     /* get value paired with given key */
     return 0;
 }
 
-void free_animals_list(ex06_t *list)
+static void free_animals_list(ex06_t *list)
 {
     /* free list nodes */
 }
