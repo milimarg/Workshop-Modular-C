@@ -12,7 +12,7 @@ static void destroy_string(ex04_t *module)
     /* destroy the string */
 }
 
-static void dump_string(ex04_t *module)
+static void dump_string(const ex04_t *module)
 {
     /* display module content */
 }

@@ -7,7 +7,7 @@
 
 #include "../includes/header.h"
 
-static void add_animal_to_list(ex06_t *list, char *key, int value)
+static void add_animal_to_list(ex06_t **list, char *key, void *value)
 {
     /* create node */
     /* add key to node */
@@ -15,7 +15,7 @@ static void add_animal_to_list(ex06_t *list, char *key, int value)
     /* add node to list */
 }
 
-static int get_animal_from_list(ex06_t *list, char *key)
+static void *get_animal_from_list(ex06_t *list, char *key)
 {
     /* get value paired with given key */
     return 0;
@@ -35,9 +35,9 @@ void exercise_6()
     char *dog_value = "woof!";
     double fish_value = 3.14;
 
-    add_animal_to_list(map, "cat", &cat_value);
-    add_animal_to_list(map, "dog", dog_value);
-    add_animal_to_list(map, "fish", &fish_value);
+    add_animal_to_list(&map, "cat", &cat_value);
+    add_animal_to_list(&map, "dog", dog_value);
+    add_animal_to_list(&map, "fish", &fish_value);
 
     void *cat_data = get_animal_from_list(map, "cat");
     void *dog_data = get_animal_from_list(map, "dog");
