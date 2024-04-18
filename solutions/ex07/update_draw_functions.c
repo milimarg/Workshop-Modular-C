@@ -20,7 +20,7 @@ void draw_entity(ex07_t *object)
     printf("Drawing entity (%s)...\n", ((entity_object *)object->data)->name);
 }
 
-void draw_background(ex07_t *object)
+void draw_background(ex07_t *object __attribute_maybe_unused__)
 {
     printf("Drawing background...\n");
 }
