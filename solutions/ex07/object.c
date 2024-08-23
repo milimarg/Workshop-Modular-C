@@ -3,12 +3,15 @@
 void init_object(ex07_t *object, obj_type type, int args_nb, ...)
 {
     va_list va;
+    entity_object *entity = NULL;
+    background_object *background = NULL;
+    item_object *item = NULL;
 
     va_start(va, args_nb);
     object->type = type;
     switch (object->type) {
         case ENTITY:
-            entity_object *entity = malloc(sizeof(entity_object));
+            entity = malloc(sizeof(entity_object));
             entity->name = va_arg(va, char *);
             entity->value = va_arg(va, int);
             object->data = entity;
@@ -18,7 +21,7 @@ void init_object(ex07_t *object, obj_type type, int args_nb, ...)
                    entity->name, entity->value);
             break;
         case BACKGROUND:
-            background_object *background = malloc(sizeof(background_object));
+            background = malloc(sizeof(background_object));
             background->filepath = va_arg(va, char *);
             background->width = va_arg(va, int);
             background->height = va_arg(va, int);
@@ -29,7 +32,7 @@ void init_object(ex07_t *object, obj_type type, int args_nb, ...)
                    background->filepath, background->width, background->height);
             break;
         case ITEM:
-            item_object *item = malloc(sizeof(item_object));
+            item = malloc(sizeof(item_object));
             item->name = va_arg(va, char *);
             item->texture_filepath = va_arg(va, char *);
             object->data = item;
@@ -44,22 +47,19 @@ void init_object(ex07_t *object, obj_type type, int args_nb, ...)
 
 void delete_object(ex07_t *object)
 {
+    void *ptr = object->data;
+
     switch (object->type) {
         case ENTITY:
-            entity_object *entity = object->data;
-            printf("Deleted entity (%s)\n", entity->name);
-            free(entity);
+            printf("Deleted entity (%s)\n", ((entity_object *)ptr)->name);
             break;
         case BACKGROUND:
-            background_object *background = object->data;
-            printf("Deleted background\n");
-            free(background);
+            printf("Deleted background (%s)\n", ((background_object *)ptr)->filepath);
             break;
         case ITEM:
-            item_object *item = object->data;
-            printf("Deleted item (%s)\n", item->name);
-            free(item);
+            printf("Deleted item (%s)\n", ((item_object *)ptr)->name);
             break;
     }
+    free(ptr);
     free(object);
 }
